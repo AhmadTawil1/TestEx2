@@ -16,6 +16,8 @@ public class TestThreadCheckArray {
 			num = input.nextInt();
 			
 			SharedData sd = new SharedData(array, num);
+			long startTime=System.currentTimeMillis();
+			
 			
 			thread1 = new Thread(new ThreadCheckArray(sd), "thread1");
 			thread2 = new Thread(new ThreadCheckArray(sd), "thread2");
@@ -30,12 +32,14 @@ public class TestThreadCheckArray {
 			{
 				e.printStackTrace();
 			}
+			long endTime=System.currentTimeMillis();
+			System.out.println("total run time: "+ (endTime-startTime) + "ms");
+	
 			if (!sd.getFlag())
 			{
 				System.out.println("Sorry");
 				return;
 			}
-			
 			System.out.println("Solution for b : " + sd.getB() + ",n = " + sd.getArray().length);
 			System.out.print("I:    ");
 			for(int index = 0; index < sd.getArray().length ; index++)
